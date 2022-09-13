@@ -3,3 +3,4 @@ server/src/mensajes/migrations/*
 !server/src/mensajes/migrations/__init__.py
 
 server/src/db.sqlite3
+server/src/messageboard/config.json
