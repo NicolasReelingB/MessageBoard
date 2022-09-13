@@ -1,3 +1,5 @@
 # Ignore migration files from server app
 server/src/mensajes/migrations/*
 !server/src/mensajes/migrations/__init__.py
+
+server/src/db.sqlite3
