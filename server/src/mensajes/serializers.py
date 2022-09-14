@@ -1,18 +1,29 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import Message, Category
+from django.contrib.auth.models import User
 
 class MessageSerializer(serializers.Serializer):
     pk = serializers.ReadOnlyField()
     title = serializers.CharField(max_length=255)
     pub_date = serializers.DateField(read_only=True) # 'yyyy-mm-dd'
-    author = serializers.CharField(max_length=255)
+    author = serializers.PrimaryKeyRelatedField(read_only=True)
+    author_name = serializers.CharField(read_only=True, source='author.first_name')
+    author_username = serializers.CharField(read_only=True, source='author.username')
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     category_name = serializers.ReadOnlyField(source='category.name')
     content = serializers.CharField()
 
     def create(self, validated_data):
-        return Message.objects.create(**validated_data)
+        message = Message()
+        message.title = validated_data.get('title')
+        message.category = validated_data.get('category')
+        message.content = validated_data.get('content')
+        message.author = validated_data.get('user')
+
+        message.save()
+
+        return message
 
     
     def update(self, instance, validated_data):
@@ -23,6 +34,7 @@ class MessageSerializer(serializers.Serializer):
 
         instance.save()
         return instance
+
 
 class CategorySerializer(serializers.Serializer):
     pk = serializers.ReadOnlyField()

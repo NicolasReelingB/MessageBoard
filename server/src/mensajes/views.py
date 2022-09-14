@@ -1,13 +1,15 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Category, Message
 from .serializers import MessageSerializer, CategorySerializer
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def messages(request):
 
     if request.method == 'GET':
@@ -25,7 +27,7 @@ def messages(request):
             serializer = MessageSerializer(many=True, data=data)
 
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

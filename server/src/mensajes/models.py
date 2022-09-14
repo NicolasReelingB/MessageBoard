@@ -2,6 +2,7 @@ from unicodedata import category
 from django.db import models
 from django.utils.text import slugify
 from datetime import date
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField('Name', max_length=255, unique=True)
@@ -29,7 +30,8 @@ class Category(models.Model):
 class Message(models.Model):
     title = models.CharField('title', max_length=255)
     pub_date = models.DateField('Pub Date', default=date.today)
-    author = models.CharField('author', max_length=255)
+    # author = models.CharField('author', max_length=255)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
     category = models.ForeignKey('category', on_delete=models.CASCADE, related_name='messages')
     content = models.TextField('Content')
 
