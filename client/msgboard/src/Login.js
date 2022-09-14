@@ -4,7 +4,7 @@ import axios from "axios"
 import Navigation from "./Components/navigation";
 import Messages from "./Messages";
 import AppRoutes from "./Routes/app_routes";
-import './Login.css';
+import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
@@ -28,7 +28,6 @@ const Login = () => {
     console.log('failed:', err);
   };
   return (
-      <body>
     <section className="Form my-4 mx-5">
         <div className="container">
             <div className="row no-gutters">
@@ -64,7 +63,6 @@ const Login = () => {
             </div>
         </div>
     </section>
-  </body>
   );
 }
 

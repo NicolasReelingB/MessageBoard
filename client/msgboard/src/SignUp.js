@@ -1,7 +1,4 @@
 import React, { useEffect } from "react";
-import Navigation from "./Components/navigation";
-import Messages from "./Messages";
-import AppRoutes from "./Routes/app_routes";
 import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
@@ -27,7 +24,6 @@ const SignUp = () => {
     console.log('failed:', err);
   };
   return (
-      <body className='App-body'>
         <section className='Form my-4 mx-5'>
           <div className='container'>
             <div className='row no-gutters'>
@@ -37,6 +33,11 @@ const SignUp = () => {
                   <div className='form-row'>
                     <div>
                       <input type='e-mail' placeholder='E-mail' className='form-control my-3 p-4'></input>
+                    </div>
+                  </div>
+                  <div className='form-row'>
+                    <div>
+                      <input type='username' placeholder='Username' className='form-control my-3 p-4'></input>
                     </div>
                   </div>
                   <div className='form-row'>
@@ -63,7 +64,6 @@ const SignUp = () => {
             </div>
           </div>
         </section>
-      </body>
   );
 }
 

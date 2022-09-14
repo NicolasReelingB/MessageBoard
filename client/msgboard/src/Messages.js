@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./Messages.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios"
 import MsgCard from "./Components/MsgCard";
@@ -26,7 +26,6 @@ const Messages = () => {
   };
 
   return (
-      <div className="App">
       <div id="msg_container">
         {items.map((item) => {
           return (
@@ -41,7 +40,6 @@ const Messages = () => {
           );
         })}
       </div>
-    </div>
   );
 }
 
