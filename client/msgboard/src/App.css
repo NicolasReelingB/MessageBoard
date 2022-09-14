@@ -1,140 +1,32 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-}
-
-.box {
-  position: absolute;
-  cursor: move;
-  color: black;
-  background-color: white;
-  min-width: 215px;
-  max-width: 215px;
-  overflow-wrap: break-word;
-  border-radius: 5px;
-  padding: 1em;
-  margin: auto;
-  user-select: none;
-}
-
-body {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  color: black;
-}
-#new-item {
-  user-select: none;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-input {
-  border-radius: 5px 0px 0px 5px;
-  color: black;
-  font-size: 1.3em;
-  background-color: transparent;
-  padding: 0.5em;
-}
-
-input:focus {
-  outline: none;
-}
-
-button {
-  cursor: pointer;
-  background-color: gray;
-  font-size: 1em;
-  padding: 0.7em;
-  border-radius: 0px 5px 5px 0px;
-}
-
-button:hover {
-  background-color: rgb(173, 162, 162);
-}
-
-#delete {
-  text-align: right;
-  font-size: 0.9em;
-  top: 0;
-  right: 0;
-  background-color: transparent;
-  border: none;
-}
-
-#fecha {
-  font-size: 0.6em;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: transparent;
-  border: none;
-}
-
-#delete:hover {
-  color: rgb(255, 55, 55);
-}
-
-textarea {
-  width: 80%;
-  height: 100px;
-  padding: 12px 20px;
+* {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  resize: none;
 }
 
-.msg_section {
-  margin-left: 3px;
-	margin-right: 3px;
-	border-radius: 5px;
-  width: 1600px;
-  overflow-wrap: break-word;
-  border-radius: 30px;
-  padding: 1em;
-  margin: 40px;
-  user-select: none;
-  max-height: 300px;
+body{
+  background-color: rgb(177, 176, 215);
 }
-
-.msg_head {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  height: 30px;
+.form-row{
+  background-color: black;
+  border-radius: 50px;
 }
-
-.msg_person {
-  float: left;
-  text-align: left;
-  color: black;
-}
-
-.msg_title {
+.button1{
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 151%;
+  background-color: black;
+  color: white;
+  border-radius: 1px;
+  font-weight: bold;
   text-align: center;
+}
+.button1:hover{
+  background: white;
+  border: 1px solid;
   color: black;
 }
-
-.msg_time {
-  float: right;
-  text-align: right;
-  color: black;
-}
-
-.msg_content {
-  border-radius: 3px;
-  margin: 10px;
-  padding: 10px;
-  text-align: justify;
-  color: black;
-}
-
-#msg_container {
-  overflow-y: auto;
+.form-button{
+  background-color: black;
 }
