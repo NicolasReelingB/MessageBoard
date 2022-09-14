@@ -17,7 +17,6 @@ const Messages = () => {
     getData();
   }, []);
 
-
   return (
       <div className="App">
       <div id="msg_container">

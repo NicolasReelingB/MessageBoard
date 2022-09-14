@@ -2,12 +2,19 @@ import {Card, Button} from 'react-bootstrap';
 import axios from "axios"
 
 const MsgCard = (props) => {
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("token")) || []
+  );
 
   const deleteMsg = (id) => {
     var result = window.confirm("Want to delete?");
     if (result) {
       const apiCall = "http://127.0.0.1:8000/message/" + id + "/";
-      axios.delete(apiCall).then(() => console.log("Se ha borrado exitosamente."));
+      axios.delete(apiCall, {
+        headers: {
+          'Authorization': `Token ${token.data.token}`,
+        }
+      }).then(() => console.log("Se ha borrado exitosamente."));
     }
   };
 

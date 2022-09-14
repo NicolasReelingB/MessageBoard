@@ -1,44 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { v4 as uuidv4 } from "uuid";
 import axios from "axios"
-import { Container, Form } from "react-bootstrap";
 
 const MsgPosting = () =>{
-  const [item, setItem] = useState("");
-  const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
+  const [items, setItems] = useState([]);
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("token")) || []
+  );
   
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/categories/').then((res) => {setCat(res)});
-        console.log(categories);
-    }, []);
-
-  const newitem = () => {
-    if (item.trim() !== "") {
-      const newitem = {
-        id: uuidv4(),
-        item: item,
-        title: title,
-      };
-      axios.post('http://127.0.0.1:8000/messages/', {
-        title: newitem.title,
-        author: "Nicolas",
-        category: 1,
-        content: newitem.item
-      })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+  async function newitem() {
+      axios.post("http://127.0.0.1:8000/messages/", 
+        {
+          title: title,
+          category: 1,
+          content: item
+        },
+        {
+          headers: {
+              'Authorization': `Token ${token.data.token}`,
+            }
+        }
+    ).then((res) => {
+      console.log("RESPONSE RECEIVED: ", res);
+    })
+    .catch((err) => {
+      console.log("AXIOS ERROR: ", err);
+    })
+      setItems((items) => [...items, newitem]);
       setItem("");
       setTitle("");
-    } else {
-      alert("Enter a item");
-      setItem("");
-      setTitle("");
-    }
   };
 
   const keyPress = (event) => {
@@ -49,7 +40,29 @@ const MsgPosting = () =>{
   };
 
   return (
-    <p>asdadasads</p>
+    <div id="new-item">
+      <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+        <input 
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Ingresa titulo"
+        />
+        <br></br>
+        <input
+          value={item}
+          onChange={(e) => setItem(e.target.value)}
+          placeholder="Contenido..."
+          onKeyPress={(e) => keyPress(e)}
+        />
+        <br></br>
+        <button onClick={newitem}>ENTER</button>
+      </div>
   );
 }
 
