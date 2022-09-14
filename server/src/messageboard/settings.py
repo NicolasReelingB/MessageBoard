@@ -20,7 +20,7 @@ CONFIG_FILE = BASE_DIR / 'messageboard' / 'config.json'
 
 
 if not CONFIG_FILE.exists():
-    raise ImproperlyConfigured
+    raise ImproperlyConfigured('No config file found')
 
 secret_dict = get_secrets(CONFIG_FILE)
 
@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'mensajes.apps.MensajesConfig',
+    'usuarios.apps.UsuariosConfig',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +113,14 @@ AUTH_PASSWORD_VALIDATORS = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
+
+# Rest FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

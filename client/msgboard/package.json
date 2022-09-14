@@ -13,10 +13,19 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "react-router-dom": "^6.4.0",
+=======
+    "react-google-login": "^5.2.2",
+>>>>>>> main
+    "react-scripts": "5.0.1",
+=======
     "react-google-login": "^5.2.2",
     "react-router-dom": "^6.4.0",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "^5.0.1",
+>>>>>>> f202b621d97b3866c27828997110e94f53122539
     "web-vitals": "^2.1.4"
   },
   "scripts": {
