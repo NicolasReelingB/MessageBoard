@@ -2,10 +2,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
-from .models import Category, Message
-from .serializers import MessageSerializer, CategorySerializer
+from .models import Category, Message, Like, Comment
+from .serializers import CommentSerializer, MessageSerializer, CategorySerializer, LikeSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -108,4 +108,53 @@ def category_detail(request, pk):
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+@api_view(['POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def like_message(request, pk):
+    try:
+        message = Message.objects.get(pk=pk)
+    except Message.DoesNotExist:
+        return Response('No Message Found!', status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'POST':
+        serializer = LikeSerializer(data={'user':request.user.pk, 'message':message.pk})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'DELETE':
+        like = Like.objects.filter(user=request.user, message=message)
+
+        if like.exists():
+            like.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response('No like found!', status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
+def comment_message(request, pk):
+    try:
+        message = Message.objects.get(pk=pk)
+    except Message.DoesNotExist:
+        return Response('No Message Found!', status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        comments = Comment.objects.filter(message=message)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = CommentSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save(user=request.user, message=message)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # serializer = CommentSerializer()
 
