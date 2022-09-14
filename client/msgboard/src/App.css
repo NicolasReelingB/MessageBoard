@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
   background-color: #282c34;
@@ -84,14 +85,15 @@ textarea {
   width: 80%;
   height: 100px;
   padding: 12px 20px;
+=======
+* {
+  padding: 0;
+  margin: 0;
+>>>>>>> main
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  resize: none;
 }
 
+<<<<<<< HEAD
 .msg_section {
   margin-left: 3px;
 	margin-right: 3px;
@@ -103,38 +105,32 @@ textarea {
   margin: 40px;
   user-select: none;
   max-height: 300px;
+=======
+body{
+  background-color: rgb(177, 176, 215);
+>>>>>>> main
 }
-
-.msg_head {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  height: 30px;
+.form-row{
+  background-color: black;
+  border-radius: 50px;
 }
-
-.msg_person {
-  float: left;
-  text-align: left;
-  color: black;
-}
-
-.msg_title {
+.button1{
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 151%;
+  background-color: black;
+  color: white;
+  border-radius: 1px;
+  font-weight: bold;
   text-align: center;
+}
+.button1:hover{
+  background: white;
+  border: 1px solid;
   color: black;
 }
-
-.msg_time {
-  float: right;
-  text-align: right;
-  color: black;
+.form-button{
+  background-color: black;
 }
 
-.msg_content {
-  border-radius: 3px;
-  margin: 10px;
-  padding: 10px;
-  text-align: justify;
-  color: black;
-}
-
-#msg_container {
-  overflow-y: auto;
-}
