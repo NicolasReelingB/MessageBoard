@@ -28,12 +28,6 @@ const Login = () => {
     console.log('failed:', err);
   };
   return (
-    <div className = "App">
-      <div className="Navbar">
-        <Navigation/>
-        <Messages/>
-        <AppRoutes/>
-      </div>
       <body>
     <section className="Form my-4 mx-5">
         <div className="container">
@@ -56,7 +50,7 @@ const Login = () => {
                                 <button type="button" className="button1">Sign in</button>
                             </div>
                         </div>
-                        <p>Don't have an account? <a href="home">Sign up here</a></p>
+                        <p>Don't have an account? <a href="/">Sign up here</a></p>
                         <GoogleLogin
                           clientId={clientId}
                           buttonText='Sign in with Google'
@@ -71,7 +65,6 @@ const Login = () => {
         </div>
     </section>
   </body>
-</div>
   );
 }
 

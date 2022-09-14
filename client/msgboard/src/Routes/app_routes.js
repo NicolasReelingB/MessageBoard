@@ -4,13 +4,14 @@ import Messages from "../Messages";
 import MsgPosting from "../MsgPosting";
 import Profile from "../Profile";
 import Login from "../Login";
-import App from "../App";
+import SignUp from "../SignUp";
 
 const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="login" element={<Login />} />
+                <Route path="/" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="post" element={<MsgPosting />} />
                 <Route path="profile" element={<Profile />} />

@@ -1,8 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import AppRoutes from '../Routes/app_routes';
 
 function Navigation() {
     return (
@@ -13,7 +11,7 @@ function Navigation() {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="/post">Post a Message!</Nav.Link>
-                <Nav.Link href="/feed">Your Feed</Nav.Link>
+                <Nav.Link href="/messages">Your Feed</Nav.Link>
               </Nav>
               <Nav>
                 <Nav.Link href="/profile">
