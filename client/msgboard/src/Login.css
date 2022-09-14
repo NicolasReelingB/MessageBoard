@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(177, 176, 215);
+}
+.form-row{
+    background-color: black;
+    border-radius: 50px;
+}
+.button1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 151%;
+    background-color: black;
+    color: white;
+    border-radius: 1px;
+    font-weight: bold;
+    text-align: center;
+}
+.button1:hover{
+    background: white;
+    border: 1px solid;
+    color: black;
+}
+.form-button{
+    background-color: black;
+}

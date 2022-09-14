@@ -1,24 +1,17 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios"
 import Navigation from "./Components/navigation";
 import Messages from "./Messages";
+import Login from "./Login";
 import AppRoutes from "./Routes/app_routes";
-
-function App() {
-  return (
-    <div className = "App">
-      <Navigation/>
-      <Messages/>
-      <AppRoutes/>
-=======
 import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import { useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link'; 
 
-function App() {
+
+const App = () => {
   const clientId = '483228021662-givrndsnnso527e6b1jkkkkl2udult6d.apps.googleusercontent.com'
 
   useEffect(() => {
@@ -38,7 +31,12 @@ function App() {
     console.log('failed:', err);
   };
   return (
-    <div className='App'>
+    <div className = "App">
+      <div className="Navbar">
+        <Navigation/>
+        <Messages/>
+        <AppRoutes/>
+      </div>
       <body className='App-body'>
         <section className='Form my-4 mx-5'>
           <div className='container'>
@@ -61,7 +59,7 @@ function App() {
                       <button type='button' className='button1'>Sign Up</button>
                     </div>
                   </div>
-                  <p>Already have an account? <a href='login.html'>Log In!</a></p>
+                  <p>Already have an account? <a href="login">Log In!</a></p>
                   <GoogleLogin
                     clientId={clientId}
                     buttonText='Sign in with Google'
@@ -76,9 +74,8 @@ function App() {
           </div>
         </section>
       </body>
->>>>>>> main
     </div>
-  )
+  );
 }
 
 export default App;
