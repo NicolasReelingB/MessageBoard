@@ -3,8 +3,7 @@ import "./App.css";
 import axios from "axios"
 
 const MsgPosting = () =>{
-  const [item, setItem] = useState("");
-  const [title, setTitle] = useState("");
+  const [categories, setCat] = useState([]);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
@@ -31,7 +30,6 @@ const MsgPosting = () =>{
       setItems((items) => [...items, newitem]);
       setItem("");
       setTitle("");
-
   };
 
   const keyPress = (event) => {

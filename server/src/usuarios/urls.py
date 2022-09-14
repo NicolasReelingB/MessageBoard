@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path('users/', views.users),
-    path('user/<int:pk>/', views.user),
+    path('user/<int:pk>/', views.UserDetail.as_view()),
+    path('user/profile/', views.UserFromToken.as_view()),
     path('auth/test/', views.auth_test_view),
     path('user/obtain-token/', auth_views.obtain_auth_token),
 ]
