@@ -6,8 +6,6 @@ import MsgCard from "./Components/MsgCard";
 import { Col } from "react-bootstrap";
 
 const Messages = () => {
-    const [item, setItem] = useState("");
-  const [title, setTitle] = useState("");
   const [items, setItems] = useState([]);
   
   async function getData() {

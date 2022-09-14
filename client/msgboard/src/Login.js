@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import axios from "axios"
-import Navigation from "./Components/navigation";
-import Messages from "./Messages";
-import AppRoutes from "./Routes/app_routes";
 import './Login.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
 const Login = () => {
+  const [userName, setUser] = useState("");
+  const [password, setPW] = useState("");  
     const clientId = '483228021662-givrndsnnso527e6b1jkkkkl2udult6d.apps.googleusercontent.com'
+
+
+  const logUser = () => {
+    axios.post('http://127.0.0.1:8000/user/obtain-token/', {
+      username: userName,
+      password: password
+    })
+    .then((response) => {
+      localStorage.setItem("token", JSON.stringify(response));
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
 
   useEffect(() => {
     const initClient = () => {
@@ -37,17 +49,17 @@ const Login = () => {
                     <form>
                         <div className="form-row">
                             <div>
-                                <input type="username" placeholder="Username" className="form-control my-3 p-4"></input>
+                                <input type="username" placeholder="Username" className="form-control my-3 p-4" value = {userName} onChange={(e) => setUser(e.target.value)}></input>
                             </div>
                         </div>
                         <div className="form-row">
                             <div>
-                                <input type="password" placeholder="Password" className="form-control my-3 p-4"></input>
+                                <input type="password" placeholder="Password" className="form-control my-3 p-4" value = {password} onChange={(e) => setPW(e.target.value)}></input>
                             </div>
                         </div>
                         <div className="form-button">
                             <div className="col-lg-8">
-                                <button type="button" className="button1">Sign in</button>
+                                <button type="button" className="button1" onClick={() => logUser()}>Sign in</button>
                             </div>
                         </div>
                         <p>Don't have an account? <a href="/">Sign up here</a></p>
