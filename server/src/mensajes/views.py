@@ -1,4 +1,5 @@
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import status
@@ -6,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 from .models import Category, Message, Like, Comment
 from .serializers import CommentSerializer, MessageSerializer, CategorySerializer, LikeSerializer
-
+from .permissions import IsOwnerorReadOnly
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticatedOrReadOnly])
@@ -34,12 +35,15 @@ def messages(request):
         
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsOwnerorReadOnly])
 def message_detail(request, pk):
 
     try:
         message = Message.objects.get(pk=pk)
     except Message.DoesNotExist:
         return Response('Message not found', status=status.HTTP_404_NOT_FOUND)
+
+    IsOwnerorReadOnly.has_object_permission(request=request, views=message_detail, obj=message)
 
     if request.method == 'GET':
         serializer = MessageSerializer(message)
