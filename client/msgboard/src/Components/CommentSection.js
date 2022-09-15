@@ -58,15 +58,14 @@ const CommentSection = () => {
         <div className="entriesContainer">
          <br></br>
          <br></br>
-         <br></br>
-         <br></br>   
-            <input 
+         <div className="commentInputContainer">   
+            <input className="commentInput"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Leave a comment"
         />
-        <br></br>
-        <button onClick={newComment}>ENTER</button>
+        </div>
+        <button className="enter" onClick={newComment}>ENTER</button>
         <Card>
             <Card.Header as="h5">{msgTitle} {msgDate}</Card.Header>
                 <Card.Body>
