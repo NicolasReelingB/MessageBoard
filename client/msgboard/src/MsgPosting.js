@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./MsgPosting.css"
 import axios from "axios"
 
 const MsgPosting = () =>{
@@ -50,23 +50,18 @@ const MsgPosting = () =>{
 
   return (
     <div id="new-item">
-      <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-        <input 
+      <div className="inputGroup">
+        <input className="inputField"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Ingresa titulo"
+          placeholder="Enter the title"
         />
-        <br></br>
-        <input
+      </div>
+      <div className="inputGroup">
+        <input id="contentField" className="inputField"
           value={item}
           onChange={(e) => setItem(e.target.value)}
-          placeholder="Contenido..."
+          placeholder="Content..."
           onKeyPress={(e) => keyPress(e)}
         />
         <br></br>
@@ -77,8 +72,9 @@ const MsgPosting = () =>{
         {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
         </select>
         <br></br>
-        <button onClick={newitem}>ENTER</button>
-      </div>
+        <button className="enter" onClick={newitem}>POST</button>
+    </div>
+    </div>
   );
 }
 
