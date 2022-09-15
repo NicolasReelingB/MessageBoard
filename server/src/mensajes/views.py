@@ -161,11 +161,11 @@ class CommentMessage(APIView):
     
     def get_object(self, pk:int):
         try:
-            category = Category.objects.get(pk=pk)
-        except Category.DoesNotExist:
+            message = Message.objects.get(pk=pk)
+        except Message.DoesNotExist:
             raise Http404
 
-        return category
+        return message
 
     def get(self, request, pk):
         message = self.get_object(pk)
