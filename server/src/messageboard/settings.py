@@ -112,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://meek-flan-50d67c.netlify.app/',
 ]
 
 
@@ -143,3 +144,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+if not DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': '',
+            'PASSWORD': '',
+            'PORT': '3306',
+            'HOST': '',
+            'OPTIONS':{
+                'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+        }
+    }
+
+
