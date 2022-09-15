@@ -31,7 +31,7 @@ const MsgCard = (props) => {
   }
 
   const navigateToComments = () => {
-    navigate('/');
+    navigate('/comments', {id: props.pk});
   }
 
   return (

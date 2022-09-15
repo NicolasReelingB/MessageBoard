@@ -5,6 +5,7 @@ import MsgPosting from "../MsgPosting";
 import Profile from "../Profile";
 import Login from "../Login";
 import SignUp from "../SignUp";
+import CommentSection from "../Components/CommentSection";
 
 const AppRoutes = () => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="post" element={<MsgPosting />} />
+                <Route path="/comments" element={<CommentSection />} />
                 <Route path="profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
