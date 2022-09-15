@@ -9,6 +9,7 @@ import CommentSection from "../Components/CommentSection";
 import Weather from "../Components/weatherApi";
 import UpdateMessage from "../updateMsg";
 
+
 const AppRoutes = () => {
     return (
         <BrowserRouter>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./MsgPosting.css"
 import axios from "axios"
 
 const MsgPosting = () =>{
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
+  const [catChose, setChosen] = useState(1);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
@@ -15,7 +16,7 @@ const MsgPosting = () =>{
       axios.post("http://127.0.0.1:8000/messages/", 
         {
           title: title,
-          category: 1,
+          category: catChose,
           content: item
         },
         {
@@ -41,30 +42,41 @@ const MsgPosting = () =>{
     }
   };
 
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/categories/').then((res) => {
+      setCat(res.data);
+    });
+  }, [])
+
   return (
     <div id="new-item">
-      <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-        <input 
+      <div className="inputGroup">
+        <input className="inputField"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Ingresa titulo"
+          placeholder="Enter the title"
         />
-        <br></br>
-        <input
+      </div>
+      <div className="inputGroup">
+        <input id="contentField" className="inputField"
           value={item}
           onChange={(e) => setItem(e.target.value)}
-          placeholder="Contenido..."
+          placeholder="Content..."
           onKeyPress={(e) => keyPress(e)}
         />
-        <br></br>
-        <button onClick={newitem}>ENTER</button>
-      </div>
+        <div className="inputGroup">
+        <select className="categoriesSelect" onChange={(e) => {
+          setChosen(e.target.value);
+          }}>
+        {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
+        </select>
+        
+        <div className="enterContainer">
+        <button className="enter" onClick={newitem}>POST</button>
+        </div>
+        </div>
+    </div>
+    </div>
   );
 }
 

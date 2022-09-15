@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios"
-import Navigation from "./Components/navigation";
-import Messages from "./Messages";
-import AppRoutes from "./Routes/app_routes";
 import './App.css';
 import './Login.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [userName, setUser] = useState("");
   const [password, setPW] = useState("");  
-    const clientId = '483228021662-givrndsnnso527e6b1jkkkkl2udult6d.apps.googleusercontent.com'
-
+  const clientId = '483228021662-givrndsnnso527e6b1jkkkkl2udult6d.apps.googleusercontent.com';
 
   const logUser = () => {
     axios.post('http://127.0.0.1:8000/user/obtain-token/', {
@@ -25,6 +24,7 @@ const Login = () => {
     }, (error) => {
       console.log(error);
     });
+    navigate('/messages');
   }
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Login = () => {
       });
     };
     gapi.load('client:auth2', initClient);
-  });
+  }, []);
 
   const onSuccess = (res) => {
     console.log('success:', res);

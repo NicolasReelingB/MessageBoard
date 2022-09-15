@@ -44,7 +44,6 @@ const MsgCard = (props) => {
   const editMsg = () => {
     navigate('/update', {state:{id:props.pk, title: props.title, content: props.content, category: props.category,}});
   }
-
   return (
     <Card>
       <Card.Header>
