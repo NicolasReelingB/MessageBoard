@@ -1,0 +1,20 @@
+.buttons {
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+}
+
+#heartIcon:hover {
+    color: rgb(122, 4, 4);
+}
+
+.title {
+    margin-bottom: -30px;
+}
+
+.datePub {
+    text-align: right;
+}
+
+
+
