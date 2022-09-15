@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import '../Profile.css';
 import { Col } from "react-bootstrap";
 import MsgCard from "./MsgCard";
 
-const CommentSection = (id) => {
+const CommentSection = () => {
+    const location = useLocation();
+    const id = location.state.id;
     const [comment, setComment] = useState("");
     const [items, setItems] = useState([]);
     const [token, setToken] = useState(
         JSON.parse(localStorage.getItem("token")) || []
     );
-    console.log(id);
     
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/message/" + 5 + "comment/", {
+        axios.get("http://127.0.0.1:8000/message/" + id + "/comment/", {
             headers: {
                 'Authorization': `Token ${token.data.token}`,
             }
@@ -23,7 +25,7 @@ const CommentSection = (id) => {
     }, [])
 
     const newComment = () => {
-        axios.post("http://127.0.0.1:8000/message/" + 5 + "/comment/", {
+        axios.post("http://127.0.0.1:8000/message/" + id + "/comment/", {
             comment: comment
         },
         {

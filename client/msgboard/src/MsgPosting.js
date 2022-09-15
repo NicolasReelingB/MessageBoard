@@ -6,7 +6,7 @@ const MsgPosting = () =>{
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
-  const [catChose, setChose] = useState(0);
+  const [catChose, setChosen] = useState(0);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
@@ -16,7 +16,7 @@ const MsgPosting = () =>{
       axios.post("http://127.0.0.1:8000/messages/", 
         {
           title: title,
-          category: 1,
+          category: catChose,
           content: item
         },
         {
@@ -70,11 +70,11 @@ const MsgPosting = () =>{
           onKeyPress={(e) => keyPress(e)}
         />
         <br></br>
-        <select>
-        {categories.map((categoria) => {
-          <option key = {categoria.pk}>{categoria.name}</option>
-          console.log(categoria.name);
-        })}
+        <select onChange={(e) => {
+          setChosen(e.target.value);
+          console.log(catChose);
+          }}>
+        {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
         </select>
         <br></br>
         <button onClick={newitem}>ENTER</button>
