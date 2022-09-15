@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('messages/', views.Messages.as_view()),
+    path('messages/user/', views.UserMessage.as_view()),
     path('message/<int:pk>/', views.MessageDetail.as_view()),
     path('message/<int:pk>/like/', views.LikeMessage.as_view()),
     path('message/<int:pk>/comment/', views.CommentMessage.as_view()),

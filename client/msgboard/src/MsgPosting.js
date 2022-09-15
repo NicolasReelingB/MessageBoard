@@ -1,44 +1,38 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import { v4 as uuidv4 } from "uuid";
+import "./MsgPosting.css"
 import axios from "axios"
-import { Container, Form } from "react-bootstrap";
 
 const MsgPosting = () =>{
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
+  const [catChose, setChosen] = useState(1);
+  const [items, setItems] = useState([]);
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("token")) || []
+  );
   
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/categories/').then((res) => {setCat(res)});
-        console.log(categories);
-    }, []);
-
-  const newitem = () => {
-    if (item.trim() !== "") {
-      const newitem = {
-        id: uuidv4(),
-        item: item,
-        title: title,
-      };
-      axios.post('http://127.0.0.1:8000/messages/', {
-        title: newitem.title,
-        author: "Nicolas",
-        category: 1,
-        content: newitem.item
-      })
-      .then((response) => {
-        console.log(response);
-      }, (error) => {
-        console.log(error);
-      });
+  async function newitem() {
+      axios.post("http://127.0.0.1:8000/messages/", 
+        {
+          title: title,
+          category: catChose,
+          content: item
+        },
+        {
+          headers: {
+              'Authorization': `Token ${token.data.token}`,
+            }
+        }
+    ).then((res) => {
+      console.log("RESPONSE RECEIVED: ", res);
+    })
+    .catch((err) => {
+      console.log("AXIOS ERROR: ", err);
+    })
+      setItems((items) => [...items, newitem]);
       setItem("");
       setTitle("");
-    } else {
-      alert("Enter a item");
-      setItem("");
-      setTitle("");
-    }
   };
 
   const keyPress = (event) => {
@@ -48,8 +42,41 @@ const MsgPosting = () =>{
     }
   };
 
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/categories/').then((res) => {
+      setCat(res.data);
+    });
+  }, [])
+
   return (
-    <p>asdadasads</p>
+    <div id="new-item">
+      <div className="inputGroup">
+        <input className="inputField"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter the title"
+        />
+      </div>
+      <div className="inputGroup">
+        <input id="contentField" className="inputField"
+          value={item}
+          onChange={(e) => setItem(e.target.value)}
+          placeholder="Content..."
+          onKeyPress={(e) => keyPress(e)}
+        />
+        <div className="inputGroup">
+        <select className="categoriesSelect" onChange={(e) => {
+          setChosen(e.target.value);
+          }}>
+        {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
+        </select>
+        
+        <div className="enterContainer">
+        <button className="enter" onClick={newitem}>POST</button>
+        </div>
+        </div>
+    </div>
+    </div>
   );
 }
 

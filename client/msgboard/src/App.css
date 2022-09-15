@@ -1,16 +1,12 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body{
+.bodyContent {
   background-color: rgb(177, 176, 215);
 }
+
 .form-row{
   background-color: black;
   border-radius: 50px;
 }
+
 .button1{
   border: none;
   outline: none;
@@ -22,21 +18,9 @@ body{
   font-weight: bold;
   text-align: center;
 }
+
 .button1:hover{
   background: white;
   border: 1px solid;
   color: black;
 }
-<<<<<<< Updated upstream
-.form-button{
-  background-color: black;
-=======
-
-.msg_content {
-  border-radius: 3px;
-  margin: 10px;
-  padding: 10px;
-  color: black;
->>>>>>> Stashed changes
-}
-

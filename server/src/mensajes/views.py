@@ -161,11 +161,11 @@ class CommentMessage(APIView):
     
     def get_object(self, pk:int):
         try:
-            category = Category.objects.get(pk=pk)
-        except Category.DoesNotExist:
+            message = Message.objects.get(pk=pk)
+        except Message.DoesNotExist:
             raise Http404
 
-        return category
+        return message
 
     def get(self, request, pk):
         message = self.get_object(pk)
@@ -184,6 +184,16 @@ class CommentMessage(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserMessage(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        messages = Message.objects.filter(author=request.user)
+        serializer = MessageSerializer(messages, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 # @api_view(['GET', 'POST'])
