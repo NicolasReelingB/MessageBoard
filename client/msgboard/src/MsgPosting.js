@@ -67,7 +67,6 @@ const MsgPosting = () =>{
         <div className="inputGroup">
         <select className="categoriesSelect" onChange={(e) => {
           setChosen(e.target.value);
-          console.log(catChose);
           }}>
         {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
         </select>
