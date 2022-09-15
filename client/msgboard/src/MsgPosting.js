@@ -64,15 +64,18 @@ const MsgPosting = () =>{
           placeholder="Content..."
           onKeyPress={(e) => keyPress(e)}
         />
-        <br></br>
+        <div className="inputGroup">
         <select onChange={(e) => {
           setChosen(e.target.value);
           console.log(catChose);
           }}>
         {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
         </select>
-        <br></br>
+        
+        <div className="enterContainer">
         <button className="enter" onClick={newitem}>POST</button>
+        </div>
+        </div>
     </div>
     </div>
   );
