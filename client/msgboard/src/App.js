@@ -9,7 +9,6 @@ const App = () => {
   return (
     <Container>
       <Navigation/>
-      <AppRoutes/>
     </Container>
   );
 }

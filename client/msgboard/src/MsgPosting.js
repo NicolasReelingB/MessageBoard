@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./MsgPosting.css"
 import axios from "axios"
 
 const MsgPosting = () =>{
+  const navigate = useNavigate();
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
@@ -30,9 +32,9 @@ const MsgPosting = () =>{
     .catch((err) => {
       console.log("AXIOS ERROR: ", err);
     })
-      setItems((items) => [...items, newitem]);
       setItem("");
       setTitle("");
+      navigate("/messages");
   };
 
   const keyPress = (event) => {
