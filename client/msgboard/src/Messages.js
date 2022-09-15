@@ -24,7 +24,7 @@ const Messages = () => {
         {items.map((item) => {
           return (
             <Col key = {item.pk}>
-                <MsgCard
+                <MsgCard className="card"
                     title={item.title}
                     content={item.content}
                     author={item.author_username}

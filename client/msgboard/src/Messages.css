@@ -2,3 +2,14 @@
     margin-top:90px;
     width: 100%;
 }
+
+#msg_container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    overflow-y: auto;
+}
+
+.card {
+    margin-top: 10px;
+}
+
