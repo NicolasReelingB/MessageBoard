@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {Card, Button} from 'react-bootstrap';
 import axios from "axios"
 
@@ -18,6 +19,15 @@ const MsgCard = (props) => {
     }
   };
 
+  const likeMsg = (id) => {
+    const apiCall = "http://127.0.0.1:8000/message/" + id + "/like/";
+    axios.post(apiCall, {
+      headers: {
+        'Authorization': `Token ${token.data.token}`,
+      }
+    }).then(() => console.log("Liked!"));
+  }
+
   return (
     <Card>
       <Card.Header as="h5">{props.title} {props.pub_date} <Button onClick={()=>deleteMsg(props.pk)}></Button></Card.Header>
@@ -28,7 +38,7 @@ const MsgCard = (props) => {
             {props.content}{' '}
           </p>
           <footer className="blockquote-footer">
-            {props.author} <cite title="Source Title"></cite>
+            {props.author} <cite title="Source Title"></cite> <Button onClick={()=>likeMsg(props.pk)}></Button>
           </footer>
         </blockquote>
       </Card.Body>

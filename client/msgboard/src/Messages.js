@@ -18,15 +18,21 @@ const Messages = () => {
   }, []);
 
   return (
-      <div className="App">
-      <div id="msg_container">
+      <div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+      <div>
         {items.map((item) => {
           return (
             <Col key = {item.pk}>
                 <MsgCard
                     title={item.title}
                     content={item.content}
-                    author={item.author}
+                    author={item.author_username}
                     pub_date={item.pub_date}
                     pk={item.pk}
                 />
