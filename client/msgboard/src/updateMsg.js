@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./MsgPosting.css"
 import axios from "axios"
 
-const MsgPosting = () =>{
-  const navigate = useNavigate();
-  const [item, setItem] = useState("");
-  const [title, setTitle] = useState("");
+const UpdateMessage = () =>{
+    const location = useLocation();
+    const id = location.state.id;
+    const navigate = useNavigate();
+  const [item, setItem] = useState(location.state.content);
+  const [title, setTitle] = useState(location.state.title);
   const [categories, setCat] = useState([]);
-  const [catChose, setChosen] = useState(1);
+  const [catChose, setChosen] = useState(location.state.category);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
   );
   
-  async function newitem() {
-      axios.post("http://127.0.0.1:8000/messages/", 
+  async function updateItem() {
+    const urlGet = "http://127.0.0.1:8000/message/" + id + "/";
+      axios.put(urlGet, 
         {
           title: title,
           category: catChose,
@@ -23,12 +26,12 @@ const MsgPosting = () =>{
         },
         {
           headers: {
-              'Authorization': `Token ${token.data.token}`,
-            }
+            'Authorization': `Token ${token.data.token}`,
+          }
         }
     ).then((res) => {
       console.log("RESPONSE RECEIVED: ", res);
-      navigate("/messages");
+      navigate('/messages');
     })
     .catch((err) => {
       console.log("AXIOS ERROR: ", err);
@@ -40,7 +43,7 @@ const MsgPosting = () =>{
   const keyPress = (event) => {
     var code = event.keyCode || event.which;
     if (code === 13) {
-      newitem();
+      updateItem();
     }
   };
 
@@ -67,14 +70,14 @@ const MsgPosting = () =>{
           onKeyPress={(e) => keyPress(e)}
         />
         <div className="inputGroup">
-        <select className="categoriesSelect" onChange={(e) => {
+        <select value ={catChose} className="categoriesSelect" onChange={(e) => {
           setChosen(e.target.value);
           }}>
         {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
         </select>
         
         <div className="enterContainer">
-        <button className="enter" onClick={newitem}>POST</button>
+        <button className="enter" onClick={updateItem}>UPDATE</button>
         </div>
         </div>
     </div>
@@ -82,4 +85,4 @@ const MsgPosting = () =>{
   );
 }
 
-export default MsgPosting;
+export default UpdateMessage;

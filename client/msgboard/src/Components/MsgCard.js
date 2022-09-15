@@ -25,11 +25,12 @@ const MsgCard = (props) => {
         }
       }).then(() => console.log("Se ha borrado exitosamente."));
     }
+    window.location.reload(true);
   };
 
   const likeMsg = (id) => {
-    const apiCall = "http://127.0.0.1:8000/message/" + id + "/like/";
-    axios.post(apiCall, {
+    const apiCallLike = "http://127.0.0.1:8000/message/" + id + "/like/";
+    axios.put(apiCallLike, {
       headers: {
         'Authorization': `Token ${token.data.token}`,
       }
@@ -40,6 +41,9 @@ const MsgCard = (props) => {
     navigate('/comments', {state:{id:props.pk}});
   }
 
+  const editMsg = () => {
+    navigate('/update', {state:{id:props.pk, title: props.title, content: props.content, category: props.category,}});
+  }
   return (
     <Card>
       <Card.Header>
@@ -53,7 +57,7 @@ const MsgCard = (props) => {
       </div>
       
       <button className="buttons" onClick={()=>deleteMsg(props.pk)}><FontAwesomeIcon icon={faDeleteLeft}/></button>
-      <button className="buttons" ><FontAwesomeIcon icon={faEdit}/></button>
+      <button className="buttons" onClick={()=>editMsg()}><FontAwesomeIcon icon={faEdit}/></button>
       
       </Card.Header>
       <Card.Body>
