@@ -1,12 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
+import axios from "axios";
 
 
 const SignUp = () => {
+  const [userName, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirst] = useState("");
+  const [lastName, setLast] = useState("");
+  const [password, setPW] = useState("");  
   const clientId = '483228021662-givrndsnnso527e6b1jkkkkl2udult6d.apps.googleusercontent.com'
 
+
+  const createAccount = () => {
+    axios.post('http://127.0.0.1:8000/users/', {
+        username: userName,
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password
+
+    })
+    .then((response) => {
+        console.log(response);
+    }, (error) => {
+        console.log(error);
+    });
+  }
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
@@ -30,24 +52,34 @@ const SignUp = () => {
               <div className='col-lg-7 px-5 pt-5'>
                 <h1 className='font-weight-bold py-3'>Create an account!</h1>
                 <form>
-                  <div className='form-row'>
+                <div className='form-row'>
                     <div>
-                      <input type='e-mail' placeholder='E-mail' className='form-control my-3 p-4'></input>
+                      <input type='text' placeholder='Username' className='form-control my-3 p-4' value = {userName} onChange={(e) => setUser(e.target.value)}></input>
                     </div>
                   </div>
                   <div className='form-row'>
                     <div>
-                      <input type='username' placeholder='Username' className='form-control my-3 p-4'></input>
+                      <input type='e-mail' placeholder='E-mail' className='form-control my-3 p-4' value = {email} onChange={(e) => setEmail(e.target.value)}></input>
                     </div>
                   </div>
                   <div className='form-row'>
                     <div>
-                      <input type='password' placeholder='Password' className='form-control my-3 p-4'></input>
+                      <input type='text' placeholder='First Name' className='form-control my-3 p-4' value = {firstName} onChange={(e) => setFirst(e.target.value)}></input>
+                    </div>
+                  </div>
+                  <div className='form-row'>
+                    <div>
+                      <input type='text' placeholder='Last Name' className='form-control my-3 p-4' value = {lastName} onChange={(e) => setLast(e.target.value)}></input>
+                    </div>
+                  </div>
+                  <div className='form-row'>
+                    <div>
+                      <input type='password' placeholder='Password' className='form-control my-3 p-4' value = {password} onChange={(e) => setPW(e.target.value)}></input>
                     </div>
                   </div>
                   <div className='form-button'>
                     <div className='col-lg-8'>
-                      <button type='button' className='button1'>Sign Up</button>
+                      <button type='button' className='button1' onClick={() => createAccount()}>Sign Up</button>
                     </div>
                   </div>
                   <p>Already have an account? <a href="/login">Log In!</a></p>
