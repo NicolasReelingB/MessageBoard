@@ -18,19 +18,36 @@
 }
 
 .weather-container {
-    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.locationInput {
+    margin: 0;
+    border: 2px solid rgb(1, 33, 129);
+    border-radius: 5px;
+    height: 40px;
 }
 
 .location {
     font-weight: bolder;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.temp {
+    margin-left: 20px;
 }
 
 .description {
     font-style: italic;
     font-size: 17px;
+    margin: 0;
+    margin-left: 20px;
 }
 
 .humidity {
     font-weight: bolder;
-    display: flex;
+    margin-left: 20px;
 }

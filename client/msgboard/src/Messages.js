@@ -64,7 +64,7 @@ const Messages = () => {
       <div id="msg_container">
 
       <div className="weather-container">
-        <input
+        <input className="locationInput"
           value={location}
           onChange={event => setLocation(event.target.value)}
           onKeyPress={searchLocation}
