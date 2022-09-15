@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../Profile.css';
 import { Col, Card } from "react-bootstrap";
 import CommentCard from "./CommentCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const CommentSection = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const id = location.state.id;
     const [msgTitle, setTitle] = useState("");
@@ -37,7 +40,7 @@ const CommentSection = () => {
           headers: {
               'Authorization': `Token ${token.data.token}`,
             }
-        }).then(((response) => {console.log(response)}));
+        }).then(((response) => {console.log(response); window.location.reload(true);}));
     }
 
     const actualMessage = () => {
@@ -56,6 +59,10 @@ const CommentSection = () => {
     }
     return (
         <div className="entriesContainer">
+         <br></br> 
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <button className="buttons" onClick={()=>navigate("/messages")}><FontAwesomeIcon icon={faArrowLeft} id="faArrowLeft" className="buttonIcons" /></button>
+            </div>  
          <br></br>
          <br></br>
          <div className="commentInputContainer">   

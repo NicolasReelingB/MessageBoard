@@ -28,13 +28,13 @@ const MsgPosting = () =>{
         }
     ).then((res) => {
       console.log("RESPONSE RECEIVED: ", res);
+      navigate("/messages");
     })
     .catch((err) => {
       console.log("AXIOS ERROR: ", err);
     })
       setItem("");
       setTitle("");
-      navigate("/messages");
   };
 
   const keyPress = (event) => {
