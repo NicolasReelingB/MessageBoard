@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory} from "react-router-dom";
 import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
@@ -47,7 +46,6 @@ const SignUp = () => {
     console.log('failed:', err);
   };
   return (
-      <body className='App-body'>
         <section className='Form my-4 mx-5'>
           <div className='container'>
             <div className='row no-gutters'>
@@ -98,7 +96,6 @@ const SignUp = () => {
             </div>
           </div>
         </section>
-      </body>
   );
 }
 

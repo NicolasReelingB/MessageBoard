@@ -1,15 +1,12 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-}
-
-body{
+.bodyContent {
   background-color: rgb(177, 176, 215);
 }
+
 .form-row{
   background-color: black;
   border-radius: 50px;
 }
+
 .button1{
   border: none;
   outline: none;
@@ -21,6 +18,7 @@ body{
   font-weight: bold;
   text-align: center;
 }
+
 .button1:hover{
   background: white;
   border: 1px solid;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Messages.css";
 import axios from "axios"
 import MsgCard from "./Components/MsgCard";
 import { Col } from "react-bootstrap";
@@ -18,14 +19,7 @@ const Messages = () => {
   }, []);
 
   return (
-      <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-      <div>
+      <div id="msg_container">
         {items.map((item) => {
           return (
             <Col key = {item.pk}>
@@ -40,7 +34,6 @@ const Messages = () => {
           );
         })}
       </div>
-    </div>
   );
 }
 
