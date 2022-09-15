@@ -6,6 +6,7 @@ const MsgPosting = () =>{
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
+  const [catChose, setChose] = useState(0);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
@@ -41,6 +42,12 @@ const MsgPosting = () =>{
     }
   };
 
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/categories/').then((res) => {
+      setCat(res.data);
+    });
+  }, [])
+
   return (
     <div id="new-item">
       <br></br>
@@ -62,6 +69,13 @@ const MsgPosting = () =>{
           placeholder="Contenido..."
           onKeyPress={(e) => keyPress(e)}
         />
+        <br></br>
+        <select>
+        {categories.map((categoria) => {
+          <option key = {categoria.pk}>{categoria.name}</option>
+          console.log(categoria.name);
+        })}
+        </select>
         <br></br>
         <button onClick={newitem}>ENTER</button>
       </div>

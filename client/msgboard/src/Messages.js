@@ -11,6 +11,7 @@ const Messages = () => {
     axios.get('http://127.0.0.1:8000/messages/')
       .then(res => {
         setItems(res.data)
+        console.log(items);
       })
   }
 
