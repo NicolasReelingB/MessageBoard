@@ -44,11 +44,11 @@ const MsgCard = (props) => {
     <Card>
       <Card.Header>
       
-      <div class="title"> 
+      <div className="title"> 
         <h5>{props.title} </h5>
       </div>
       
-      <div class="datePub"> 
+      <div className="datePub"> 
         <h5>{props.pub_date} </h5>
       </div>
       

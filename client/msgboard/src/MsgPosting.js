@@ -6,7 +6,7 @@ const MsgPosting = () =>{
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
-  const [catChose, setChosen] = useState(0);
+  const [catChose, setChosen] = useState(1);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
@@ -65,7 +65,7 @@ const MsgPosting = () =>{
           onKeyPress={(e) => keyPress(e)}
         />
         <div className="inputGroup">
-        <select onChange={(e) => {
+        <select className="categoriesSelect" onChange={(e) => {
           setChosen(e.target.value);
           console.log(catChose);
           }}>

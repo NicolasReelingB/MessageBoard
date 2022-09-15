@@ -83,8 +83,19 @@
 }
 
 .categoriesSelect{
-    position: relative;
-    margin-top: 1000px;
+    color: navy;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 5px;
+    text-align: center;
+    width: 400px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: aliceblue;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
 }
+
 
 

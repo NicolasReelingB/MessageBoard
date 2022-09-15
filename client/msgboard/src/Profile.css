@@ -43,3 +43,7 @@
     height: 500px;
     background-color: rgb(174, 193, 237);
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
