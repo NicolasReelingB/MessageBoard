@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './App.css';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
@@ -6,6 +7,7 @@ import axios from "axios";
 
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [userName, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirst] = useState("");
@@ -28,6 +30,7 @@ const SignUp = () => {
     }, (error) => {
         console.log(error);
     });
+    navigate('/login', {state:{username:userName}});
   }
   useEffect(() => {
     const initClient = () => {

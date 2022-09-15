@@ -6,6 +6,7 @@ import Profile from "../Profile";
 import Login from "../Login";
 import SignUp from "../SignUp";
 import CommentSection from "../Components/CommentSection";
+import Weather from "../Components/weatherApi";
 
 const AppRoutes = () => {
     return (
@@ -15,8 +16,9 @@ const AppRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="messages" element={<Messages />} />
                 <Route path="post" element={<MsgPosting />} />
-                <Route path="/comments" element={<CommentSection />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="/comments" element={<CommentSection />} />
+                <Route path="/weather" element={<Weather />} />
             </Routes>
         </BrowserRouter>
     )
