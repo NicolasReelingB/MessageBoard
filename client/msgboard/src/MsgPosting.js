@@ -6,7 +6,7 @@ const MsgPosting = () =>{
   const [item, setItem] = useState("");
   const [title, setTitle] = useState("");
   const [categories, setCat] = useState([]);
-  const [catChose, setChosen] = useState(0);
+  const [catChose, setChosen] = useState(1);
   const [items, setItems] = useState([]);
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || []
@@ -67,7 +67,6 @@ const MsgPosting = () =>{
         <div className="inputGroup">
         <select onChange={(e) => {
           setChosen(e.target.value);
-          console.log(catChose);
           }}>
         {categories.map((categoria) => <option key = {categoria.pk} value = {categoria.pk}>{categoria.name}</option>)}
         </select>
