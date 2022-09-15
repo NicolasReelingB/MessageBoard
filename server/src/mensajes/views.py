@@ -83,12 +83,22 @@ class LikeMessage(APIView):
     def post(self, request, pk):
 
         message = self.get_object(pk)
-        serializer = LikeSerializer(data={'user':request.user.pk, 'message':message.pk})
-        if serializer.is_valid():
-            serializer.save()
+        like = Like(user=request.user, message=message)
+        #serializer = LikeSerializer(data={'user':request.user.pk, 'message':message.pk})
+        
+        try:
+            like.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except:
+            return Response('Already liked', status=status.HTTP_400_BAD_REQUEST)
+
+        
+        #if serializer.is_valid():
+         #   serializer.save()
+          #  return Response(status=status.HTTP_204_NO_CONTENT)
+        #else:
+         #   return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

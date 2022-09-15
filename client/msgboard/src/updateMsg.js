@@ -17,22 +17,27 @@ const UpdateMessage = () =>{
   );
   
   async function updateItem() {
-    const urlGet = "http://127.0.0.1:8000/messages/" + id + "/";
+    const urlGet = "http://127.0.0.1:8000/message/" + id + "/";
       axios.put(urlGet, 
         {
           title: title,
           category: catChose,
           content: item
+        },
+        {
+          headers: {
+            'Authorization': `Token ${token.data.token}`,
+          }
         }
     ).then((res) => {
       console.log("RESPONSE RECEIVED: ", res);
+      navigate('/messages');
     })
     .catch((err) => {
       console.log("AXIOS ERROR: ", err);
     })
       setItem("");
       setTitle("");
-      navigate('/messages');
   };
 
   const keyPress = (event) => {

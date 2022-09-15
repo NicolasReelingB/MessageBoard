@@ -29,8 +29,8 @@ const MsgCard = (props) => {
   };
 
   const likeMsg = (id) => {
-    const apiCall = "http://127.0.0.1:8000/message/" + id + "/like/";
-    axios.post(apiCall, {
+    const apiCallLike = "http://127.0.0.1:8000/message/" + id + "/like/";
+    axios.put(apiCallLike, {
       headers: {
         'Authorization': `Token ${token.data.token}`,
       }

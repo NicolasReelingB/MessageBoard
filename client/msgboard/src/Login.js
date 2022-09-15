@@ -20,14 +20,16 @@ const Login = () => {
     })
     .then((response) => {
       localStorage.setItem("token", JSON.stringify(response));
+      localStorage.setItem("isAuthenticated", "true");
       console.log(response);
+      navigate('/messages');
     }, (error) => {
       console.log(error);
     });
-    navigate('/messages');
   }
 
   useEffect(() => {
+    console.log(localStorage.getItem("isAuthenticated"));
     const initClient = () => {
       gapi.client.init({
         clientId: clientId,

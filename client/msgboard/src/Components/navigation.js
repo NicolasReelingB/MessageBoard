@@ -17,7 +17,8 @@ function Navigation() {
   //const navigate = useNavigate();
   const logOutUser = () => {
     localStorage.removeItem("token");
-    //navigate("/login");
+    localStorage.setItem("isAuthenticated", "false");
+    window.location.pathname("/login");
   }
 
     return (
